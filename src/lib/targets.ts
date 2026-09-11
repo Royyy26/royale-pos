@@ -22,7 +22,7 @@ export function periodLabel(period: string): string {
   return `${MONTHS[(month ?? 1) - 1]} ${year}`
 }
 
-/** 'Sep 26' — untuk sumbu chart. */
+/** 'Sep 26', untuk sumbu chart. */
 export function periodLabelShort(period: string): string {
   const [year, month] = period.split('-').map(Number)
   return `${MONTHS[(month ?? 1) - 1].slice(0, 3)} ${String(year).slice(2)}`
@@ -86,7 +86,7 @@ function statusOf(
   // Bulan yang belum berjalan tidak bisa dinilai tertinggal.
   if (isFuture) return 'upcoming'
   if (revenuePercent >= 100) return 'achieved'
-  // Bulan lampau sudah selesai — hanya tercapai atau tidak.
+  // Bulan lampau sudah selesai, hanya tercapai atau tidak.
   if (!isCurrentMonth) return 'missed'
   if (pacePercent >= 98) return 'on_track'
   if (pacePercent >= 85) return 'at_risk'

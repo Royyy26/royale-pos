@@ -167,7 +167,7 @@ export function TargetsPage() {
           <div className="mt-4 rounded-2xl bg-ink-900 p-4 text-white">
             <p className="text-[11px] font-semibold uppercase tracking-wide text-white/50">Harus dicapai per hari tersisa</p>
             <p className="mt-1 text-[24px] figure">
-              {current.hasTarget ? formatIDR(current.requiredPerDay) : '—'}
+              {current.hasTarget ? formatIDR(current.requiredPerDay) : '-'}
             </p>
             <p className="mt-1.5 text-[12px] text-white/50">
               {current.hasTarget
@@ -182,7 +182,7 @@ export function TargetsPage() {
             <div className="flex items-center justify-between text-[12.5px]">
               <span className="font-medium text-ink-600">Target jumlah transaksi</span>
               <span className="font-bold tnum text-ink-900">
-                {formatNumber(current.transactionActual)} / {current.transactionTarget ? formatNumber(current.transactionTarget) : '—'}
+                {formatNumber(current.transactionActual)} / {current.transactionTarget ? formatNumber(current.transactionTarget) : '-'}
               </span>
             </div>
             <ProgressBar
@@ -245,11 +245,11 @@ export function TargetsPage() {
                         </span>
                       </div>
                     ) : (
-                      <span className="text-[12px] text-ink-300">—</span>
+                      <span className="text-[12px] text-ink-300">-</span>
                     )}
                   </Td>
                   <Td align="right" className="tnum text-ink-600">
-                    {target ? formatNumber(target.transaction_target) : '—'}
+                    {target ? formatNumber(target.transaction_target) : '-'}
                   </Td>
                   <Td align="right" className="tnum font-semibold text-ink-800">
                     {formatNumber(progress.transactionActual)}
@@ -477,7 +477,7 @@ function TargetFormModal({
         <p className="mt-3 rounded-xl bg-info-50 p-3 text-[12.5px] leading-relaxed text-info-700">
           Realisasi periode ini sudah <b>{formatIDR(progress.revenueActual)}</b> dari {progress.transactionActual}{' '}
           transaksi. Dengan target di atas, pencapaiannya menjadi{' '}
-          <b>{revenue ? formatPercent((progress.revenueActual / revenue) * 100) : '—'}</b>.
+          <b>{revenue ? formatPercent((progress.revenueActual / revenue) * 100) : '-'}</b>.
         </p>
       )}
 

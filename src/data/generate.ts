@@ -24,7 +24,7 @@ import type {
 } from '@/types'
 
 /* -------------------------- PRNG deterministik --------------------------- */
-/** Mulberry32 — data dummy selalu sama di setiap perangkat demo. */
+/** Mulberry32, data dummy selalu sama di setiap perangkat demo. */
 function createRandom(seed: number) {
   let a = seed >>> 0
   return () => {
@@ -89,7 +89,7 @@ const REFUND_REASONS = [
   'Pelanggan komplain waktu tunggu',
 ]
 
-/** Bobot popularitas — produk index awal lebih laris (best seller). */
+/** Bobot popularitas, produk index awal lebih laris (best seller). */
 function weightedProduct(): Product {
   const active = PRODUCTS
   const r = rand()
@@ -311,7 +311,7 @@ export function generateData(): GeneratedData {
     /**
      * Untuk hari ini, transaksi hanya dibangkitkan pada jam yang sudah
      * terlewati dan jumlahnya diskalakan mengikuti proporsi bobot jam yang
-     * sudah berjalan — sehingga volume terasa wajar sepanjang hari.
+     * sudah berjalan, sehingga volume terasa wajar sepanjang hari.
      */
     const lastHour = isToday ? Math.min(CLOSE_HOUR - 1, now.getHours()) : CLOSE_HOUR - 1
     const elapsedWeight = HOUR_WEIGHTS.filter(([h]) => h <= lastHour).reduce((a, [, w]) => a + w, 0)
@@ -346,7 +346,7 @@ export function generateData(): GeneratedData {
           user_id: o.cashier_id,
           user_name: o.cashier_name,
           action: 'transaction_cancelled',
-          description: `Membatalkan ${o.order_number} — ${o.cancel_reason}`,
+          description: `Membatalkan ${o.order_number}: ${o.cancel_reason}`,
           reference_id: o.id,
           ip_address: '192.168.1.' + between(10, 99),
           created_at: o.created_at,
@@ -358,7 +358,7 @@ export function generateData(): GeneratedData {
           user_id: OWNER.id,
           user_name: OWNER.name,
           action: 'refund',
-          description: `Refund ${o.order_number} — ${o.refund_reason}`,
+          description: `Refund ${o.order_number}: ${o.refund_reason}`,
           reference_id: o.id,
           ip_address: '192.168.1.' + between(10, 99),
           created_at: o.created_at,
@@ -372,7 +372,7 @@ export function generateData(): GeneratedData {
 
   /**
    * Beberapa meja dibiarkan punya bill berjalan agar denah meja tidak kosong
-   * saat aplikasi pertama dibuka. Bill ini berstatus `pending` — belum dibayar.
+   * saat aplikasi pertama dibuka. Bill ini berstatus `pending`, belum dibayar.
    */
   const liveTables = TABLES.map((t) => ({ ...t, status: 'available' as RestaurantTable['status'] }))
   const occupiedIdx = [2, 6, 9]

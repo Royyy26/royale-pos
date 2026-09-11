@@ -17,7 +17,7 @@ import {
 
 export type GlyphOption = { key: string; label: string; Icon: LucideIcon }
 
-/** Pilihan ikon untuk kartu produk — dikelompokkan agar picker mudah dipindai. */
+/** Pilihan ikon untuk kartu produk, dikelompokkan agar picker mudah dipindai. */
 export const PRODUCT_GLYPHS: GlyphOption[] = [
   { key: 'rice', label: 'Nasi', Icon: CookingPot },
   { key: 'noodle', label: 'Mie / Soto', Icon: Soup },

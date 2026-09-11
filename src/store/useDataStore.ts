@@ -38,7 +38,7 @@ export interface CheckoutInput {
   receivedAmount: number
   referenceNumber: string | null
   cashier: User
-  /** Bila diisi, bill terbuka inilah yang dilunasi — bukan pesanan baru. */
+  /** Bila diisi, bill terbuka inilah yang dilunasi, bukan pesanan baru. */
   billId?: string | null
 }
 
@@ -121,7 +121,7 @@ function quantityMap(items: OrderItem[]): Map<string, number> {
 
 /**
  * Sesuaikan stok berdasarkan selisih item sebelum dan sesudah. Dipakai bill
- * terbuka: menambah item memotong stok, menghapus item mengembalikannya —
+ * terbuka: menambah item memotong stok, menghapus item mengembalikannya -
  * tanpa pernah memotong dua kali saat bill akhirnya dibayar.
  */
 function applyStockDiff(
@@ -364,7 +364,7 @@ export const useDataStore = create<DataState>((set, get) => ({
             user_id: user.id,
             user_name: user.name,
             action: 'transaction_cancelled' as const,
-            description: `Void ${order.order_number} — ${reason}`,
+            description: `Void ${order.order_number}: ${reason}`,
             reference_id: orderId,
             ip_address: '192.168.1.10',
             created_at: at,
@@ -393,7 +393,7 @@ export const useDataStore = create<DataState>((set, get) => ({
             user_id: user.id,
             user_name: user.name,
             action: 'refund' as const,
-            description: `Refund ${order.order_number} — ${reason}`,
+            description: `Refund ${order.order_number}: ${reason}`,
             reference_id: orderId,
             ip_address: '192.168.1.10',
             created_at: at,
@@ -472,7 +472,7 @@ export const useDataStore = create<DataState>((set, get) => ({
 
       const items = input.items.map((it) => ({ ...it, order_id: bill.id }))
 
-      // Stok mengikuti isi bill saat itu juga — makanan sudah dibuat dapur.
+      // Stok mengikuti isi bill saat itu juga, makanan sudah dibuat dapur.
       const { inventory, movements } = applyStockDiff(
         db,
         bill.items,
@@ -518,7 +518,7 @@ export const useDataStore = create<DataState>((set, get) => ({
         db,
         bill.items,
         [],
-        `Pembatalan bill ${bill.order_number} — ${reason}`,
+        `Pembatalan bill ${bill.order_number}: ${reason}`,
         bill.id,
         user,
         at,
@@ -540,7 +540,7 @@ export const useDataStore = create<DataState>((set, get) => ({
             user_id: user.id,
             user_name: user.name,
             action: 'transaction_cancelled' as const,
-            description: `Membatalkan bill ${bill.order_number} — ${reason}`,
+            description: `Membatalkan bill ${bill.order_number}: ${reason}`,
             reference_id: bill.id,
             ip_address: '192.168.1.10',
             created_at: at,
@@ -917,7 +917,7 @@ export const useDataStore = create<DataState>((set, get) => ({
               quantity_before: before,
               quantity_change: after - before,
               quantity_after: after,
-              reason: `Opname disetujui — ${adj.reason}`,
+              reason: `Opname disetujui: ${adj.reason}`,
               reference_id: adj.id,
               user_id: actor.id,
               user_name: actor.name,

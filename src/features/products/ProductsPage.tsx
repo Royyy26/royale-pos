@@ -13,7 +13,7 @@ import { toast } from '@/store/useToastStore'
 import type { Product } from '@/types'
 import { Glyph, normalizeGlyphKey, PRODUCT_GLYPHS } from '@/lib/glyphs'
 
-/** Tint kartu produk — mengikuti keluarga warna aplikasi, bukan pastel acak. */
+/** Tint kartu produk, mengikuti keluarga warna aplikasi, bukan pastel acak. */
 const GRADIENTS = [
   'from-brand-100 to-brand-200/80',
   'from-info-50 to-info-100',
@@ -96,7 +96,7 @@ export function ProductsPage({ readOnly = false }: { readOnly?: boolean }) {
       <Card className="mb-5 p-4">
         <div className="flex flex-wrap items-center gap-3">
           <div className="min-w-[220px] flex-1">
-            <SearchInput value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Cari nama produk atau SKU…" />
+            <SearchInput value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Cari nama produk atau SKU..." />
           </div>
           <div className="w-48">
             <Select
@@ -169,7 +169,7 @@ export function ProductsPage({ readOnly = false }: { readOnly?: boolean }) {
                       {formatPercent(margin)}
                     </Td>
                     <Td align="right" className="tnum font-semibold text-ink-800">
-                      {inv ? `${inv.quantity} ${inv.unit}` : '—'}
+                      {inv ? `${inv.quantity} ${inv.unit}` : '-'}
                     </Td>
                     <Td align="center">
                       {inv ? <StockStatusBadge status={stockStatusOf(inv.quantity, inv.min_quantity)} /> : <Badge tone="neutral">Tidak dilacak</Badge>}
@@ -211,7 +211,7 @@ export function ProductsPage({ readOnly = false }: { readOnly?: boolean }) {
                   <p className="mt-1 text-[11px] tnum text-ink-400">{p.sku}</p>
                   <p className="mt-2 text-[16px] figure text-brand-700">{formatIDR(p.price)}</p>
                   <div className="mt-2 flex items-center justify-between">
-                    <span className="text-[11.5px] tnum text-ink-500">{inv ? `${inv.quantity} ${inv.unit}` : '—'}</span>
+                    <span className="text-[11.5px] tnum text-ink-500">{inv ? `${inv.quantity} ${inv.unit}` : '-'}</span>
                     {inv && <StockStatusBadge status={stockStatusOf(inv.quantity, inv.min_quantity)} />}
                   </div>
                   {editable && (
@@ -345,7 +345,7 @@ function ProductFormModal({
         </span>
       </div>
 
-      <Textarea label="Deskripsi" className="mt-4" rows={2} value={form.description} onChange={(e) => set('description', e.target.value)} placeholder="Deskripsi singkat menu…" />
+      <Textarea label="Deskripsi" className="mt-4" rows={2} value={form.description} onChange={(e) => set('description', e.target.value)} placeholder="Deskripsi singkat menu..." />
 
       <div className="mt-4">
         <p className="mb-2 text-[13px] font-semibold text-ink-700">Ikon produk</p>

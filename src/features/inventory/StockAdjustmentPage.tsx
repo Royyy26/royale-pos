@@ -48,7 +48,7 @@ export function StockAdjustmentPage() {
   const submit = () => {
     if (!productId) return setError('Pilih produk terlebih dahulu.')
     if (reason.trim().length < 4) return setError('Alasan wajib diisi (minimal 4 karakter).')
-    if (counted === currentStock) return setError('Jumlah hasil hitung sama dengan sistem — tidak perlu penyesuaian.')
+    if (counted === currentStock) return setError('Jumlah hasil hitung sama dengan sistem. Tidak perlu penyesuaian.')
     submitOpname(productId, counted, reason.trim(), user)
     setFormOpen(false)
     setCounted(0)

@@ -29,7 +29,7 @@ import { NotFoundPage } from '@/features/misc/NotFoundPage'
 
 /**
  * `/` tidak punya halaman sendiri. Aplikasi ini dipakai staf di dalam toko,
- * bukan pengunjung, jadi akar langsung meneruskan ke beranda sesuai peran —
+ * bukan pengunjung, jadi akar langsung meneruskan ke beranda sesuai peran -
  * atau ke login bila sesi belum ada.
  */
 function Home() {

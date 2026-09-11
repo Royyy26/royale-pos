@@ -2,7 +2,7 @@ import type { Permission, Role, RoleName } from '@/types'
 
 /**
  * ============================================================================
- *  RBAC — Role Based Access Control
+ *  RBAC, Role Based Access Control
  *  Sumber tunggal definisi hak akses. Menu, route guard, dan tombol aksi
  *  seluruhnya membaca dari sini sehingga penambahan role baru cukup dilakukan
  *  di satu tempat.

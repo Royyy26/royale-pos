@@ -99,7 +99,7 @@ export function POSPage() {
       }
       if (e.key === 'F8') {
         e.preventDefault()
-        // Bill meja tidak dikosongkan lewat pintasan — hanya dilepas dari keranjang.
+        // Bill meja tidak dikosongkan lewat pintasan, hanya dilepas dari keranjang.
         if (cart.activeBillId) cart.clear()
         else if (cart.items.length) setClearOpen(true)
       }
@@ -175,7 +175,7 @@ export function POSPage() {
               ref={searchRef}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Cari menu atau SKU… (F2)"
+              placeholder="Cari menu atau SKU... (F2)"
             />
 
             <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -316,7 +316,7 @@ export function POSPage() {
                 const active = cart.orderType === t.value
                 /*
                  * Bill sudah terikat pada satu meja. Bila tipe boleh diganti,
-                 * bill tetap `pending` sementara keranjang kehilangan mejanya —
+                 * bill tetap `pending` sementara keranjang kehilangan mejanya -
                  * meja itu tidak akan pernah dibebaskan lagi.
                  */
                 const locked = !!activeBill && t.value !== cart.orderType
@@ -423,7 +423,7 @@ export function POSPage() {
             </div>
             {activeBill ? (
               /*
-               * Bill tetap terbuka di meja — ini hanya melepaskannya dari
+               * Bill tetap terbuka di meja, ini hanya melepaskannya dari
                * keranjang. Memakai label "Batalkan" di sini menyesatkan.
                */
               <button
@@ -611,7 +611,7 @@ export function POSPage() {
               </div>
             )}
 
-            {/* Bill terbuka bisa disimpan dulu — pelanggan bayar saat mau pulang. */}
+            {/* Bill terbuka bisa disimpan dulu; pelanggan bayar saat mau pulang. */}
             {activeBill && (
               <Button
                 size="lg"
@@ -693,7 +693,7 @@ export function POSPage() {
           rows={4}
           value={noteDraft}
           onChange={(e) => setNoteDraft(e.target.value)}
-          placeholder="mis. tidak pedas, es sedikit, pisah saus…"
+          placeholder="mis. tidak pedas, es sedikit, pisah saus..."
           autoFocus
         />
         <div className="mt-3 flex flex-wrap gap-2">
@@ -722,7 +722,7 @@ export function POSPage() {
           }
           useDataStore
             .getState()
-            .log(user.id, user.name, 'transaction_cancelled', `Membatalkan draft pesanan — ${clearReason}`, null)
+            .log(user.id, user.name, 'transaction_cancelled', `Membatalkan draft pesanan: ${clearReason}`, null)
           cart.clear()
           setClearOpen(false)
           setClearReason('')
@@ -771,7 +771,7 @@ export function POSPage() {
           ))}
         </ul>
         <p className="mt-5 rounded-xl bg-info-50 p-3 text-[12.5px] leading-relaxed text-info-700">
-          Barcode scanner mode keyboard juga didukung — arahkan scanner ke halaman POS tanpa memfokuskan kolom input.
+          Barcode scanner mode keyboard juga didukung. Arahkan scanner ke halaman POS tanpa memfokuskan kolom input.
         </p>
       </Modal>
     </Page>

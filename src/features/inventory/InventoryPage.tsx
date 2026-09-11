@@ -129,7 +129,7 @@ export function InventoryPage() {
       <Card className="mb-5 p-4">
         <div className="flex flex-wrap items-center gap-3">
           <div className="min-w-[220px] flex-1">
-            <SearchInput value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Cari produk atau SKU…" />
+            <SearchInput value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Cari produk atau SKU..." />
           </div>
           <div className="w-48">
             <Select
@@ -208,7 +208,7 @@ export function InventoryPage() {
                       {formatIDR(inv.quantity * product.cost_price)}
                     </Td>
                     <Td align="right" className="text-[12px] text-ink-500">
-                      {inv.last_stock_in_at ? formatDateTime(inv.last_stock_in_at) : '—'}
+                      {inv.last_stock_in_at ? formatDateTime(inv.last_stock_in_at) : '-'}
                     </Td>
                     {canAdjust && (
                       <Td align="center">

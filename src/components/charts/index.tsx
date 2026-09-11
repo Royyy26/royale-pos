@@ -221,7 +221,7 @@ export function SimpleBarChart({
   name?: string
   layout?: 'horizontal' | 'vertical'
   colorful?: boolean
-  /** Format label sumbu nilai — ganti untuk data non-mata uang. */
+  /** Format label sumbu nilai, ganti untuk data non-mata uang. */
   axisFormatter?: (v: number) => string
 }) {
   const vertical = layout === 'vertical'

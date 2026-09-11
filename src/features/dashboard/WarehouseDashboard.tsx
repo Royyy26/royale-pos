@@ -153,7 +153,7 @@ export function WarehouseDashboard() {
 
         <ChartCard
           title="Produk Paling Cepat Bergerak"
-          subtitle="Kuantitas terjual 30 hari terakhir — prioritas restock"
+          subtitle="Kuantitas terjual 30 hari terakhir"
           height={380}
           empty={fastMoving.every((f) => f.quantity === 0)}
         >
@@ -224,7 +224,7 @@ export function WarehouseDashboard() {
                       <StockStatusBadge status={status} />
                     </Td>
                     <Td align="right" className="text-[12px] text-ink-500">
-                      {inv.last_stock_in_at ? formatDateTime(inv.last_stock_in_at) : '—'}
+                      {inv.last_stock_in_at ? formatDateTime(inv.last_stock_in_at) : '-'}
                     </Td>
                   </tr>
                 ))}

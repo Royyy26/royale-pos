@@ -369,13 +369,13 @@ export function AnalyticsPage() {
             <div className="rounded-xl bg-ink-100 p-3.5">
               <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-500">Omzet</p>
               <p className="mt-0.5 text-[22px] figure text-ink-900">
-                {target.hasTarget ? `${target.revenuePercent.toFixed(0)}%` : '—'}
+                {target.hasTarget ? `${target.revenuePercent.toFixed(0)}%` : '-'}
               </p>
             </div>
             <div className="rounded-xl bg-ink-100 p-3.5">
               <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-500">Transaksi</p>
               <p className="mt-0.5 text-[22px] figure text-ink-900">
-                {target.transactionTarget ? `${target.transactionPercent.toFixed(0)}%` : '—'}
+                {target.transactionTarget ? `${target.transactionPercent.toFixed(0)}%` : '-'}
               </p>
             </div>
           </div>
@@ -390,7 +390,7 @@ export function AnalyticsPage() {
             <div className="flex items-center justify-between rounded-xl border border-ink-200 px-3.5 py-3">
               <span className="text-[12.5px] font-semibold text-ink-600">Perlu dicapai / hari</span>
               <span className="text-[15px] figure text-ink-900">
-                {target.hasTarget ? formatCompactIDR(target.requiredPerDay) : '—'}
+                {target.hasTarget ? formatCompactIDR(target.requiredPerDay) : '-'}
               </span>
             </div>
           </div>
@@ -402,7 +402,7 @@ export function AnalyticsPage() {
                 <span className="min-w-0 flex-1 truncate text-[12px] font-medium text-ink-700">{t.label}</span>
                 <span className="text-[12px] tnum text-ink-500">{formatCompactIDR(t.revenueActual)}</span>
                 <Badge tone={t.revenuePercent >= 100 ? 'success' : t.hasTarget ? 'warning' : 'neutral'}>
-                  {t.hasTarget ? `${t.revenuePercent.toFixed(0)}%` : '—'}
+                  {t.hasTarget ? `${t.revenuePercent.toFixed(0)}%` : '-'}
                 </Badge>
               </li>
             ))}

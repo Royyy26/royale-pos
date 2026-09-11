@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 /**
  * Membaca media query secara reaktif. Dipakai agar logika tata letak sidebar
- * memakai sumber kebenaran yang sama dengan CSS-nya — bukan menebak lewat
+ * memakai sumber kebenaran yang sama dengan CSS-nya, bukan menebak lewat
  * kelas responsif yang bisa saling bertentangan.
  */
 export function useMediaQuery(query: string): boolean {
@@ -23,7 +23,7 @@ export function useMediaQuery(query: string): boolean {
 }
 
 /** Ambang sidebar menetap. Di bawah ini sidebar tampil sebagai panel melayang. */
-export const SIDEBAR_QUERY = '(min-width: 768px)'
+export const SIDEBAR_QUERY = '(min-width: 1024px)'
 
 export function useIsDesktopSidebar(): boolean {
   return useMediaQuery(SIDEBAR_QUERY)

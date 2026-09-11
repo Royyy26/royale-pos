@@ -89,7 +89,7 @@ export function StockOpnamePage() {
       <Card className="mb-5 p-4">
         <div className="flex flex-wrap items-center gap-3">
           <div className="min-w-[220px] flex-1">
-            <SearchInput value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Cari produk atau SKU…" />
+            <SearchInput value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Cari produk atau SKU..." />
           </div>
           <div className="w-52">
             <Select
@@ -157,7 +157,7 @@ export function StockOpnamePage() {
                         inputMode="numeric"
                         value={raw ?? ''}
                         onChange={(e) => setCounts((c) => ({ ...c, [inv.product_id]: e.target.value.replace(/\D/g, '') }))}
-                        placeholder="—"
+                        placeholder="-"
                         className={cn(
                           'h-10 w-24 rounded-xl border text-center text-[14px] font-bold tnum outline-none transition-colors',
                           has
@@ -169,13 +169,13 @@ export function StockOpnamePage() {
                       />
                     </Td>
                     <Td align="right" className={cn('figure', !has ? 'text-ink-300' : diff === 0 ? 'text-success-600' : diff > 0 ? 'text-info-600' : 'text-danger-600')}>
-                      {has ? `${diff > 0 ? '+' : ''}${diff}` : '—'}
+                      {has ? `${diff > 0 ? '+' : ''}${diff}` : '-'}
                     </Td>
                     <Td align="right" className={cn('tnum', !has || diff === 0 ? 'text-ink-400' : diff > 0 ? 'text-info-600' : 'text-danger-600')}>
-                      {has && diff !== 0 ? `${diff > 0 ? '+' : ''}${formatIDR(diff * product.cost_price)}` : '—'}
+                      {has && diff !== 0 ? `${diff > 0 ? '+' : ''}${formatIDR(diff * product.cost_price)}` : '-'}
                     </Td>
                     <Td align="right" className="text-[12px] text-ink-500">
-                      {inv.last_counted_at ? formatDateTime(inv.last_counted_at) : '—'}
+                      {inv.last_counted_at ? formatDateTime(inv.last_counted_at) : '-'}
                     </Td>
                   </tr>
                 )

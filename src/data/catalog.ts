@@ -8,7 +8,7 @@ const base = (id: string) => ({ id, created_at: NOW, updated_at: NOW })
 
 export const DEFAULT_SETTINGS: StoreSettings = {
   business_name: 'Royale Coffee & Kitchen',
-  tagline: 'Kopi, Dapur, dan Cerita',
+  tagline: 'Coffee Shop & Restoran',
   address: 'Jl. Diponegoro No. 128, Bandung, Jawa Barat 40115',
   phone: '022-8765 4321',
   email: 'halo@royale.id',
@@ -103,7 +103,7 @@ const ADDON: Seed[] = [
 
 /**
  * Latar kartu produk ditentukan per kategori, bukan per produk. Grid menu jadi
- * tenang dan tetap mudah dipindai — bukan pelangi pastel seperti sebelumnya.
+ * tenang dan tetap mudah dipindai, bukan pelangi pastel seperti sebelumnya.
  */
 const CATEGORY_GRADIENT: Record<string, string> = {
   cat_food: 'from-brand-100 to-brand-200/80',
@@ -120,7 +120,7 @@ function toProducts(seeds: Seed[], categoryId: string, trackStock = true): Produ
     sku,
     barcode: `899${sku.replace(/\D/g, '').padStart(10, '0')}`,
     name,
-    description: `${name} — disajikan hangat dengan bahan pilihan.`,
+    description: '',
     category_id: categoryId,
     price,
     cost_price: cost,
@@ -143,7 +143,7 @@ export const PRODUCTS: Product[] = [
 
 /* ------------------------------- Pengguna -------------------------------- */
 
-/** Satu akun kasir saja — sesuai operasional gerai tunggal. */
+/** Satu akun kasir saja, sesuai operasional gerai tunggal. */
 export const USERS: User[] = [
   {
     ...base('u_owner'),
@@ -216,7 +216,7 @@ export const PAYMENT_METHODS: PaymentMethod[] = [
     ...base('pm_qris'),
     code: 'qris',
     name: 'QRIS',
-    description: 'Scan QR — semua e-wallet & mobile banking',
+    description: 'Terima semua e-wallet dan mobile banking',
     is_active: true,
     requires_reference: true,
     admin_fee_percent: 0.7,

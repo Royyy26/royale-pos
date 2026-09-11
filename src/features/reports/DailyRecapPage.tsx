@@ -33,7 +33,7 @@ const METHOD_ICON: Record<PaymentMethodCode, typeof Banknote> = {
 }
 
 /**
- * Rekap penjualan harian — pengganti penutupan shift. Setiap hari dirangkum
+ * Rekap penjualan harian, pengganti penutupan shift. Setiap hari dirangkum
  * menjadi satu baris: total penjualan, jumlah transaksi, dan rincian per
  * metode pembayaran, tanpa perlu menghitung modal awal kas.
  */
@@ -117,7 +117,7 @@ export function DailyRecapPage() {
         />
         <StatCard
           label="Hari Terbaik"
-          value={bestDay ? formatIDR(bestDay.revenue) : '—'}
+          value={bestDay ? formatIDR(bestDay.revenue) : '-'}
           sublabel={bestDay ? formatDateFull(bestDay.date) : 'Belum ada data'}
           icon={<Receipt className="h-5 w-5" />}
           tone="violet"
@@ -296,7 +296,7 @@ export function DailyRecapPage() {
   )
 }
 
-/** Kartu progres target harian — dipakai pada dashboard kasir. */
+/** Kartu progres target harian, dipakai pada dashboard kasir. */
 export function DailyTargetCard() {
   const db = useDataStore((s) => s.db)
   const progress = useMemo(() => dailyTargetProgress(db.orders, db.targets), [db.orders, db.targets])

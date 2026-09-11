@@ -211,6 +211,21 @@ Dua bug dengan akar yang sama pernah lolos di sini, keduanya karena kelas menemp
 
 **`className` pada field form.** `Input`, `Textarea`, dan `Select` meneruskan `className` ke **pembungkus** label+field, bukan ke kontrolnya. Ini membuat `mt-4` memberi jarak pada seluruh grup — sebelumnya jarak itu menyelip di antara label dan kotaknya. Untuk gaya teks kontrol (mis. `tnum`) pakai `inputClassName` / `textareaClassName` / `selectClassName`.
 
+### Titik Putus Sidebar
+
+Sidebar menetap sebagai kolom mulai `lg` (1024px). Di bawah itu ia jadi laci melayang
+dengan overlay, dibuka lewat tombol menu di Topbar.
+
+Ambang ini pernah diturunkan ke `md` (768px) dan itu keliru: pada tablet potret
+sidebar memakan 264px dari 768px, menyisakan 504px untuk konten, dan hampir setiap
+halaman bertabel jadi menggulir menyamping. Empat berkas harus bergerak bersama,
+kalau tidak sidebar bisa tersembunyi tanpa tombol pembuka: `SIDEBAR_QUERY` di
+`lib/useMediaQuery.ts`, `lg:translate-x-0` dan overlay `lg:hidden` di `Sidebar.tsx`,
+`lg:pl-*` di `AppLayout.tsx`, dan tombol menu `lg:hidden` di `Topbar.tsx`.
+
+Input `type="date"` punya lebar minimum bawaan peramban dan menolak menyusut.
+Sepasang input tanggal selalu butuh dua kolom grid plus `min-w-0`, bukan satu.
+
 ### Titik Putus Layout POS
 
 Panel POS dipisah pada `lg` (1024px), bukan `xl`. Alasannya: breakpoint Tailwind diukur terhadap **viewport**, sedangkan ruang yang benar-benar tersedia adalah viewport dikurangi sidebar (264px). Dengan `xl`, layar 1280–1540px — rentang laptop paling umum — jatuh ke susunan bertumpuk dan kolom produk terjepit.

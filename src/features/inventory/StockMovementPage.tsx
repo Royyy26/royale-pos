@@ -93,8 +93,8 @@ export function StockMovementPage() {
       </div>
 
       <Card className="mb-5 p-4">
-        <div className="grid gap-3 lg:grid-cols-4">
-          <SearchInput value={query} onChange={(e) => { setQuery(e.target.value); setPage(1) }} placeholder="Cari produk atau alasan…" />
+        <div className="grid gap-3 lg:grid-cols-5">
+          <SearchInput value={query} onChange={(e) => { setQuery(e.target.value); setPage(1) }} placeholder="Cari produk atau alasan..." />
           <Select
             value={type}
             onChange={(e) => { setType(e.target.value as StockMovementType | 'all'); setPage(1) }}
@@ -108,18 +108,18 @@ export function StockMovementPage() {
             onChange={(e) => { setUserId(e.target.value); setPage(1) }}
             options={[{ value: 'all', label: 'Semua Pengguna' }, ...db.users.map((u) => ({ value: u.id, label: u.name }))]}
           />
-          <div className="flex gap-2">
+          <div className="flex gap-2 lg:col-span-2">
             <input
               type="date"
               value={from}
               onChange={(e) => { setFrom(e.target.value); setPage(1) }}
-              className="h-11 w-full rounded-xl border border-ink-300 px-3 text-[13px] outline-none focus:border-brand-500"
+              className="h-11 w-full min-w-0 rounded-xl border border-ink-300 px-3 text-[13px] outline-none focus:border-brand-500"
             />
             <input
               type="date"
               value={to}
               onChange={(e) => { setTo(e.target.value); setPage(1) }}
-              className="h-11 w-full rounded-xl border border-ink-300 px-3 text-[13px] outline-none focus:border-brand-500"
+              className="h-11 w-full min-w-0 rounded-xl border border-ink-300 px-3 text-[13px] outline-none focus:border-brand-500"
             />
           </div>
         </div>
@@ -160,12 +160,12 @@ export function StockMovementPage() {
                       <Td align="center">
                         <MovementBadge type={m.type} />
                       </Td>
-                      <Td align="right" className="tnum text-ink-500">{m.quantity_before || '—'}</Td>
+                      <Td align="right" className="tnum text-ink-500">{m.quantity_before || '-'}</Td>
                       <Td align="right" className={cn('figure', m.quantity_change > 0 ? 'text-success-600' : 'text-danger-600')}>
                         {m.quantity_change > 0 ? '+' : ''}
                         {m.quantity_change}
                       </Td>
-                      <Td align="right" className="tnum font-semibold text-ink-900">{m.quantity_after || '—'}</Td>
+                      <Td align="right" className="tnum font-semibold text-ink-900">{m.quantity_after || '-'}</Td>
                       <Td className="max-w-[240px] truncate text-[12.5px] text-ink-600">{m.reason}</Td>
                       <Td className="whitespace-nowrap text-[12.5px] text-ink-600">{m.user_name}</Td>
                     </tr>

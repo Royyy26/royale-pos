@@ -16,7 +16,7 @@ export type ButtonVariant =
 export type ButtonSize = 'sm' | 'md' | 'lg' | 'xl' | 'icon' | 'icon-sm'
 
 /**
- * Aksi utama memakai espresso pekat, bukan warna aksen — saffron disimpan
+ * Aksi utama memakai espresso pekat, bukan warna aksen, saffron disimpan
  * untuk sorotan agar tidak kehilangan daya tariknya.
  */
 const VARIANTS: Record<ButtonVariant, string> = {
@@ -83,7 +83,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       )}
       {...props}
     >
-      {/* Sorot melintas tipis saat hover — hanya pada tombol berisi. */}
+      {/* Sorot melintas tipis saat hover, hanya pada tombol berisi. */}
       {(variant === 'primary' || variant === 'dark' || variant === 'accent') && !disabled && !loading && (
         <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-500 group-hover/btn:translate-x-full" />
       )}

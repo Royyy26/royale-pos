@@ -45,8 +45,9 @@ export function AppLayout() {
       <div
         className={cn(
           // Sisakan ruang hanya ketika sidebar benar-benar menetap di layar.
+          // Di bawah lg sidebar jadi laci melayang, jadi konten memakai lebar penuh.
           'flex min-h-screen flex-col transition-[padding] duration-300',
-          collapsed ? 'md:pl-[78px]' : 'md:pl-[264px]',
+          collapsed ? 'lg:pl-[78px]' : 'lg:pl-[264px]',
         )}
       >
         <Outlet context={{ openMobile: () => setMobileOpen(true) }} />

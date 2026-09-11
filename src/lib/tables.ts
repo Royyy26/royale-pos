@@ -7,7 +7,7 @@ import { formatDuration } from './utils'
  *
  *  Alur table service: satu meja boleh punya paling banyak satu bill terbuka
  *  (pesanan berstatus `pending`). Status meja diturunkan dari keberadaan bill
- *  itu — bukan disimpan terpisah lalu dibiarkan basi.
+ *  itu, bukan disimpan terpisah lalu dibiarkan basi.
  * ============================================================================
  */
 
@@ -30,7 +30,7 @@ export interface TableState {
   bill: Order | null
   /**
    * Status efektif. Meja dengan bill terbuka selalu `occupied`, apa pun nilai
-   * yang tersimpan — sehingga papan meja tidak pernah berbohong.
+   * yang tersimpan, sehingga papan meja tidak pernah berbohong.
    */
   status: TableStatus
   itemCount: number
@@ -77,7 +77,7 @@ export function summarizeTables(states: TableState[]): TableSummary {
   }
 }
 
-/** Warna papan meja — dipakai denah meja dan pemilih meja di POS. */
+/** Warna papan meja, dipakai denah meja dan pemilih meja di POS. */
 export const TABLE_TONE: Record<TableStatus, { card: string; chip: string; dot: string }> = {
   available: {
     card: 'border-ink-200 bg-white hover:border-brand-400',

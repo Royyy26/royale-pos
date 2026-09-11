@@ -76,7 +76,7 @@ export function resolveRange(preset: RangePreset, customFrom?: string, customTo?
   }
 }
 
-/** Rentang sebelumnya dengan panjang hari yang sama — untuk perbandingan periode. */
+/** Rentang sebelumnya dengan panjang hari yang sama, untuk perbandingan periode. */
 export function previousRange(range: DateRange): DateRange {
   const span = range.to.getTime() - range.from.getTime()
   const to = new Date(range.from.getTime() - 1)
@@ -517,7 +517,7 @@ const EMPTY_METHODS = (): Record<PaymentMethodCode, { amount: number; count: num
 })
 
 /**
- * Rekap penjualan per hari — pengganti penutupan shift. Setiap baris berisi
+ * Rekap penjualan per hari, pengganti penutupan shift. Setiap baris berisi
  * total penjualan harian beserta rincian per metode pembayaran.
  */
 export function dailyRecap(orders: Order[], payments: Payment[]): DailyRecapRow[] {

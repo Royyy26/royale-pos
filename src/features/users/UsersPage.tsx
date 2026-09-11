@@ -87,7 +87,7 @@ export function UsersPage() {
       <Card className="mb-5 p-4">
         <div className="flex flex-wrap items-center gap-3">
           <div className="min-w-[240px] flex-1">
-            <SearchInput value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Cari nama, username, atau email…" />
+            <SearchInput value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Cari nama, username, atau email..." />
           </div>
           <div className="w-52">
             <Select

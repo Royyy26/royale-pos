@@ -7,7 +7,7 @@ export type StatTone = 'brand' | 'info' | 'plum' | 'violet' | 'amber' | 'danger'
 
 /**
  * Nada warna hanya menyentuh ikon. Kartu sengaja tidak lagi memakai garis
- * aksen di tepi atas — pola itu ciri khas templat dashboard.
+ * aksen di tepi atas, pola itu ciri khas templat dashboard.
  */
 const TONES: Record<StatTone, string> = {
   brand: 'bg-brand-50 text-brand-700 ring-brand-200/70',
@@ -76,7 +76,7 @@ export function StatCard({
           <p className="text-[11px] font-semibold uppercase tracking-[0.13em] text-ink-500">{label}</p>
           <p
             className={cn(
-              // Nominal Rupiah bisa sangat panjang — jaga tetap satu baris.
+              // Nominal Rupiah bisa sangat panjang, jaga tetap satu baris.
               'figure mt-2.5 whitespace-nowrap leading-none text-ink-900',
               compact ? 'text-[19px]' : 'text-[21px] 2xl:text-[24px]',
             )}

@@ -52,7 +52,7 @@ export interface PrinterDriver {
   openCashDrawer(): Promise<void>
 }
 
-/** Kontrak pembaca barcode — saat ini disimulasikan lewat input keyboard. */
+/** Kontrak pembaca barcode, saat ini disimulasikan lewat input keyboard. */
 export interface ScannerDriver {
   readonly id: string
   readonly label: string

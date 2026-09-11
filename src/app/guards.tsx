@@ -61,7 +61,7 @@ export function AccessDenied() {
   )
 }
 
-export function FullScreenLoader({ message = 'Menyiapkan sistem…' }: { message?: string }) {
+export function FullScreenLoader({ message = 'Menyiapkan sistem...' }: { message?: string }) {
   return (
     <div className="grid min-h-screen place-items-center bg-[var(--app-bg)]">
       <div className="flex flex-col items-center">

@@ -122,7 +122,7 @@ export function ReportsPage() {
   return (
     <Page
       title="Laporan"
-      subtitle={`${range.label} · ${formatDateShort(range.from)} — ${formatDateShort(range.to)}`}
+      subtitle={`${range.label} · ${formatDateShort(range.from)} s/d ${formatDateShort(range.to)}`}
       actions={
         <div className="flex gap-2">
           <Button variant="outline" leftIcon={<Printer className="h-4 w-4" />} onClick={() => window.print()}>
@@ -270,7 +270,7 @@ export function ReportsPage() {
                     <Td align="right" className="tnum text-ink-500">{formatIDR(p.cost)}</Td>
                     <Td align="right" className="tnum font-bold text-success-700">{formatIDR(p.profit)}</Td>
                     <Td align="right" className="tnum text-ink-600">
-                      {p.revenue ? formatPercent((p.profit / p.revenue) * 100) : '—'}
+                      {p.revenue ? formatPercent((p.profit / p.revenue) * 100) : '-'}
                     </Td>
                   </tr>
                 ))}

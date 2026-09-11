@@ -464,7 +464,7 @@ export function CheckoutDialog({
               loading={processing}
               leftIcon={!processing ? <ReceiptIcon className="h-[18px] w-[18px]" /> : undefined}
             >
-              {processing ? 'Memproses…' : `Konfirmasi Pembayaran · ${formatIDR(total)}`}
+              {processing ? 'Memproses...' : `Konfirmasi Pembayaran · ${formatIDR(total)}`}
             </Button>
           </div>
           {!canConfirm && method === 'cash' && received > 0 && (

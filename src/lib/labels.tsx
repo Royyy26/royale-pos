@@ -58,7 +58,7 @@ export const ORDER_TYPE_LABEL: Record<OrderType, string> = {
   delivery: 'Delivery',
 }
 
-/** Ikon vektor, bukan emoji — emoji bergantung font dan tidak bisa diberi token warna. */
+/** Ikon vektor, bukan emoji, emoji bergantung font dan tidak bisa diberi token warna. */
 export const ORDER_TYPE_ICON: Record<OrderType, LucideIcon> = {
   dine_in: Utensils,
   take_away: ShoppingBag,

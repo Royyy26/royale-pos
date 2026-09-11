@@ -78,8 +78,8 @@ export function AuditPage() {
       </div>
 
       <Card className="mb-5 p-4">
-        <div className="grid gap-3 lg:grid-cols-4">
-          <SearchInput value={query} onChange={(e) => { setQuery(e.target.value); setPage(1) }} placeholder="Cari deskripsi atau pengguna…" />
+        <div className="grid gap-3 lg:grid-cols-5">
+          <SearchInput value={query} onChange={(e) => { setQuery(e.target.value); setPage(1) }} placeholder="Cari deskripsi atau pengguna..." />
           <Select
             value={action}
             onChange={(e) => { setAction(e.target.value as AuditAction | 'all'); setPage(1) }}
@@ -93,18 +93,18 @@ export function AuditPage() {
             onChange={(e) => { setUserId(e.target.value); setPage(1) }}
             options={[{ value: 'all', label: 'Semua Pengguna' }, ...db.users.map((u) => ({ value: u.id, label: u.name }))]}
           />
-          <div className="flex gap-2">
+          <div className="flex gap-2 lg:col-span-2">
             <input
               type="date"
               value={from}
               onChange={(e) => { setFrom(e.target.value); setPage(1) }}
-              className="h-11 w-full rounded-xl border border-ink-300 px-3 text-[13px] outline-none focus:border-brand-500"
+              className="h-11 w-full min-w-0 rounded-xl border border-ink-300 px-3 text-[13px] outline-none focus:border-brand-500"
             />
             <input
               type="date"
               value={to}
               onChange={(e) => { setTo(e.target.value); setPage(1) }}
-              className="h-11 w-full rounded-xl border border-ink-300 px-3 text-[13px] outline-none focus:border-brand-500"
+              className="h-11 w-full min-w-0 rounded-xl border border-ink-300 px-3 text-[13px] outline-none focus:border-brand-500"
             />
           </div>
         </div>
@@ -145,7 +145,7 @@ export function AuditPage() {
                         <Badge tone={AUDIT_TONE[l.action]}>{AUDIT_LABEL[l.action]}</Badge>
                       </Td>
                       <Td className="max-w-[360px] text-[12.5px] text-ink-600">{l.description}</Td>
-                      <Td className="max-w-[140px] truncate font-mono text-[11.5px] text-ink-400">{l.reference_id ?? '—'}</Td>
+                      <Td className="max-w-[140px] truncate font-mono text-[11.5px] text-ink-400">{l.reference_id ?? '-'}</Td>
                       <Td align="right" className="font-mono text-[11.5px] tnum text-ink-400">{l.ip_address}</Td>
                     </tr>
                   )

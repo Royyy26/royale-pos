@@ -5,7 +5,7 @@ import type { Order, Payment, StoreSettings } from '@/types'
 import { Glyph } from '@/lib/glyphs'
 
 /**
- * Struk 80mm — tampilan layar dibuat menyerupai kertas thermal.
+ * Struk 80mm, tampilan layar dibuat menyerupai kertas thermal.
  * Elemen ini juga menjadi target cetak (#receipt-print-area).
  */
 export function ThermalReceipt({
@@ -215,7 +215,7 @@ export function InvoiceA4({
           { label: 'Kasir', value: order.cashier_name },
           { label: 'Tipe Pesanan', value: ORDER_TYPE_LABEL[order.type] },
           { label: 'No. Pesanan', value: order.order_number },
-          { label: 'Meja', value: order.table_name ?? '—' },
+          { label: 'Meja', value: order.table_name ?? '-' },
           { label: 'Pelanggan', value: order.customer_name || 'Umum' },
           { label: 'Jumlah Tamu', value: String(order.guest_count) },
         ].map((m) => (
@@ -277,7 +277,7 @@ export function InvoiceA4({
                   <SummaryLine label="Kembalian" value={formatIDR(payment.change_amount)} bold />
                 </>
               ) : (
-                <SummaryLine label="No. Referensi" value={payment.reference_number ?? '—'} />
+                <SummaryLine label="No. Referensi" value={payment.reference_number ?? '-'} />
               )}
             </div>
           )}

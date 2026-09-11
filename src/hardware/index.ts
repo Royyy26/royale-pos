@@ -6,7 +6,7 @@ export { BrowserPrinter }
 
 /**
  * Registry perangkat. Mengganti printer di masa depan cukup dengan
- * `registerPrinter(new ThermalUsbPrinter())` pada bootstrap aplikasi —
+ * `registerPrinter(new ThermalUsbPrinter())` pada bootstrap aplikasi -
  * seluruh halaman memanggil `printer()` sehingga tidak perlu diubah.
  */
 
@@ -60,7 +60,7 @@ export function registerScanner(driver: ScannerDriver): void {
   activeScanner = driver
 }
 
-/** Customer display placeholder — menulis ke console pada versi ini. */
+/** Customer display placeholder, menulis ke console pada versi ini. */
 export class NoopCustomerDisplay implements CustomerDisplayDriver {
   readonly id = 'noop-display'
   readonly label = 'Customer Display (belum terpasang)'
@@ -84,7 +84,7 @@ export function registerCustomerDisplay(driver: CustomerDisplayDriver): void {
   activeDisplay = driver
 }
 
-/** Ringkasan status seluruh perangkat — ditampilkan pada halaman Pengaturan. */
+/** Ringkasan status seluruh perangkat, ditampilkan pada halaman Pengaturan. */
 export function hardwareStatus() {
   return [
     { group: 'Printer', ...activePrinter.status(), driver: activePrinter.label, kind: activePrinter.kind },

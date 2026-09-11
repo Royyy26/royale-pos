@@ -26,7 +26,7 @@ export function formatNumber(value: number): string {
   return plain.format(Math.round(value || 0))
 }
 
-/** Rp 1,2 jt — untuk KPI card & sumbu chart. */
+/** Rp 1,2 jt, untuk KPI card & sumbu chart. */
 export function formatCompactIDR(value: number): string {
   const v = Math.abs(value)
   const sign = value < 0 ? '-' : ''

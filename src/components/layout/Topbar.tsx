@@ -19,7 +19,7 @@ function LiveClock() {
     return () => clearInterval(t)
   }, [])
   return (
-    <div className="hidden items-center gap-2 rounded-xl bg-white px-3 py-2 ring-1 ring-inset ring-ink-200 md:flex">
+    <div className="hidden items-center gap-2 rounded-xl bg-white px-3 py-2 ring-1 ring-inset ring-ink-200 lg:flex">
       <Clock className="h-4 w-4 text-ink-400" />
       <div className="leading-none">
         <p className="figure text-[13.5px] text-ink-800">{formatTimeSeconds(now)}</p>
@@ -64,7 +64,7 @@ export function Topbar({
       <header className="no-print sticky top-0 z-30 flex h-16 shrink-0 items-center gap-3 border-b border-ink-200 bg-[var(--app-bg)]/85 px-4 backdrop-blur-xl lg:px-6">
         <button
           onClick={onOpenMobile}
-          className="grid h-10 w-10 shrink-0 place-items-center rounded-xl text-ink-600 hover:bg-ink-100 md:hidden"
+          className="grid h-10 w-10 shrink-0 place-items-center rounded-xl text-ink-600 hover:bg-ink-100 lg:hidden"
           aria-label="Buka menu"
         >
           <Menu className="h-5 w-5" />
@@ -138,7 +138,7 @@ export function Topbar({
                           <p className="truncate text-[13px] font-semibold text-ink-800">{product?.name}</p>
                           <p className="mt-0.5 text-[12px] text-ink-500">
                             Selisih {a.difference > 0 ? '+' : ''}
-                            {a.difference} — {a.reason}
+                            {a.difference} · {a.reason}
                           </p>
                         </div>
                       </div>

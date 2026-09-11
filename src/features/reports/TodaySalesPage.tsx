@@ -263,7 +263,7 @@ export function TodaySalesPage() {
                       <Td className="font-semibold text-ink-900">{o.order_number}</Td>
                       {canSeeAll && <Td className="text-[12.5px] text-ink-600">{o.cashier_name}</Td>}
                       <Td className="tnum text-[12.5px] text-ink-600">{o.items.reduce((a, i) => a + i.quantity, 0)} porsi</Td>
-                      <Td>{p ? <PaymentBadge method={p.method} /> : '—'}</Td>
+                      <Td>{p ? <PaymentBadge method={p.method} /> : '-'}</Td>
                       <Td align="center">
                         <OrderStatusBadge status={o.status} />
                       </Td>

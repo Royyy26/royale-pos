@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- *  DOMAIN TYPES — Royale POS
+ *  DOMAIN TYPES, Royale POS
  *  Seluruh entitas mengikuti struktur tabel pada docs/schema.sql agar migrasi
  *  ke backend (PostgreSQL/MySQL) dapat dilakukan tanpa mengubah lapisan UI.
  * ============================================================================
@@ -89,13 +89,13 @@ export interface Product extends BaseEntity {
   category_id: string
   price: number
   cost_price: number
-  /** Key ikon pada `lib/glyphs` (mis. 'rice'). Data lama bisa berisi emoji — lihat resolveGlyph. */
+  /** Key ikon pada `lib/glyphs` (mis. 'rice'). Data lama bisa berisi emoji, lihat resolveGlyph. */
   emoji: string
   /** Gradien tailwind untuk latar kartu produk. */
   gradient: string
   is_active: boolean
   track_stock: boolean
-  /** Disiapkan untuk fase Recipe/BOM — lihat docs/schema.sql. */
+  /** Disiapkan untuk fase Recipe/BOM, lihat docs/schema.sql. */
   has_recipe: boolean
   prep_time_minutes: number
 }
@@ -178,7 +178,7 @@ export interface OrderItem {
   order_id: string
   product_id: string
   product_name: string
-  /** Snapshot key ikon saat transaksi dibuat — lihat Product.emoji. */
+  /** Snapshot key ikon saat transaksi dibuat, lihat Product.emoji. */
   emoji: string
   price: number
   cost_price: number

@@ -69,7 +69,7 @@ export function LoginPage() {
 
   return (
     <div className="grid min-h-screen lg:grid-cols-[1.1fr_1fr]">
-      {/* Panel kiri — branding */}
+      {/* Panel kiri: branding */}
       <div className="surface-dark relative hidden overflow-hidden lg:flex lg:flex-col lg:justify-between lg:p-12">
         <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-brand-500/25 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-32 -left-16 h-96 w-96 rounded-full bg-brand-400/10 blur-3xl" />
@@ -94,8 +94,8 @@ export function LoginPage() {
             dari satu layar.
           </h1>
           <p className="mt-5 max-w-md text-[15px] leading-relaxed text-ink-50/55">
-            Transaksi cepat untuk kasir, analitik menyeluruh untuk owner, dan kendali persediaan untuk tim gudang —
-            dalam satu sistem yang rapi.
+            Kasir, owner, dan tim gudang memakai sistem yang sama dengan hak akses
+            yang berbeda.
           </p>
 
           <div className="mt-10 grid grid-cols-3 gap-4">
@@ -118,7 +118,7 @@ export function LoginPage() {
         </div>
       </div>
 
-      {/* Panel kanan — form */}
+      {/* Panel kanan: form */}
       <div className="flex flex-col justify-center bg-white px-6 py-10 sm:px-12">
         <div className="mx-auto w-full max-w-[420px]">
           <div className="mb-8 flex items-center justify-between lg:hidden">
@@ -176,7 +176,7 @@ export function LoginPage() {
               error={error || undefined}
             />
 
-            {/* Keypad — nyaman untuk layar sentuh */}
+            {/* Keypad, nyaman untuk layar sentuh */}
             <div className="grid grid-cols-3 gap-2 pt-1">
               {['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((k) => (
                 <button

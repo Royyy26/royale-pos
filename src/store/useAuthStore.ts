@@ -30,7 +30,7 @@ function writeSession(userId: string | null) {
     if (userId) window.localStorage.setItem(SESSION_KEY, userId)
     else window.localStorage.removeItem(SESSION_KEY)
   } catch {
-    /* storage tidak tersedia — sesi hanya bertahan di memori */
+    /* storage tidak tersedia, sesi hanya bertahan di memori */
   }
 }
 

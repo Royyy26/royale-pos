@@ -134,7 +134,7 @@ export function OrdersPage() {
             Reset
           </Button>
         </div>
-        <div className="grid gap-3 lg:grid-cols-4 xl:grid-cols-7">
+        <div className="grid gap-3 lg:grid-cols-4 xl:grid-cols-8">
           <div className="lg:col-span-2 xl:col-span-2">
             <SearchInput
               value={query}
@@ -142,7 +142,7 @@ export function OrdersPage() {
                 setQuery(e.target.value)
                 setPage(1)
               }}
-              placeholder="Cari no. pesanan, pelanggan, meja…"
+              placeholder="Cari no. pesanan, pelanggan, meja..."
             />
           </div>
           <Select
@@ -196,7 +196,7 @@ export function OrdersPage() {
               ]}
             />
           )}
-          <div className="flex gap-2">
+          <div className="flex gap-2 lg:col-span-2 xl:col-span-2">
             <input
               type="date"
               value={from}
@@ -204,7 +204,7 @@ export function OrdersPage() {
                 setFrom(e.target.value)
                 setPage(1)
               }}
-              className="h-11 w-full rounded-xl border border-ink-300 px-3 text-[13px] text-ink-800 outline-none focus:border-brand-500"
+              className="h-11 w-full min-w-0 rounded-xl border border-ink-300 px-3 text-[13px] text-ink-800 outline-none focus:border-brand-500"
             />
             <input
               type="date"
@@ -213,7 +213,7 @@ export function OrdersPage() {
                 setTo(e.target.value)
                 setPage(1)
               }}
-              className="h-11 w-full rounded-xl border border-ink-300 px-3 text-[13px] text-ink-800 outline-none focus:border-brand-500"
+              className="h-11 w-full min-w-0 rounded-xl border border-ink-300 px-3 text-[13px] text-ink-800 outline-none focus:border-brand-500"
             />
           </div>
         </div>
@@ -267,11 +267,11 @@ export function OrdersPage() {
                         <OrderTypeBadge type={o.type} />
                       </Td>
                       <Td className="text-[12.5px] text-ink-600">
-                        {o.customer_name || '—'}
+                        {o.customer_name || '-'}
                         {o.table_name && <span className="ml-1 text-ink-400">({o.table_name})</span>}
                       </Td>
                       <Td className="text-[12.5px] text-ink-600">{o.cashier_name}</Td>
-                      <Td>{pm ? <PaymentBadge method={pm} /> : <span className="text-ink-400">—</span>}</Td>
+                      <Td>{pm ? <PaymentBadge method={pm} /> : <span className="text-ink-400">-</span>}</Td>
                       <Td align="center">
                         <OrderStatusBadge status={o.status} />
                       </Td>
@@ -333,7 +333,7 @@ export function Pagination({
         </Button>
         {pages.map((p, i) => (
           <span key={p} className="flex items-center">
-            {i > 0 && pages[i - 1] !== p - 1 && <span className="px-1 text-ink-400">…</span>}
+            {i > 0 && pages[i - 1] !== p - 1 && <span className="px-1 text-ink-400">...</span>}
             <button
               onClick={() => onChange(p)}
               className={cn(

@@ -131,7 +131,7 @@ export function AnimatedNumber({
 
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / (duration * 1000))
-      // easeOutExpo — cepat di awal, mendarat halus.
+      // easeOutExpo, cepat di awal, mendarat halus.
       const eased = t === 1 ? 1 : 1 - Math.pow(2, -10 * t)
       setDisplay(Math.round(from + (value - from) * eased))
       if (t < 1) raf = requestAnimationFrame(tick)
@@ -150,7 +150,7 @@ export function AnimatedNumber({
 
 /* ------------------------------- Pressable ------------------------------- */
 
-/** Kartu/tombol besar dengan pegas saat ditekan — terasa "berbobot". */
+/** Kartu/tombol besar dengan pegas saat ditekan, terasa "berbobot". */
 export function Pressable({
   children,
   className,
@@ -220,7 +220,7 @@ export function AnimatedBar({
 
 /* ------------------------------ Nilai halus ------------------------------ */
 
-/** Motion value yang mengikuti angka dengan pegas — untuk indikator langsung. */
+/** Motion value yang mengikuti angka dengan pegas, untuk indikator langsung. */
 export function useSpringValue(target: number) {
   const value = useMotionValue(target)
   const spring = useSpring(value, { stiffness: 240, damping: 30 })

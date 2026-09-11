@@ -129,10 +129,10 @@ export function persistDatabase(db: Database): void {
       try {
         storage.setItem(DB_KEY, JSON.stringify(pruneHistory(db)))
         if (import.meta.env.DEV) {
-          console.warn('[db] Kuota penyimpanan penuh — riwayat lama dipangkas.')
+          console.warn('[db] Kuota penyimpanan penuh. Riwayat lama dipangkas.')
         }
       } catch {
-        /* tetap gagal — data hanya bertahan pada sesi ini */
+        /* tetap gagal, data hanya bertahan pada sesi ini */
       }
     }
   }, 250)

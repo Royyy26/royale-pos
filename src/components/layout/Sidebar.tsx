@@ -33,7 +33,7 @@ export function Sidebar({
 
   /**
    * Mode rail sempit hanya berlaku pada sidebar menetap. Di layar sempit
-   * sidebar tampil sebagai panel melayang — kalau ikut menciut, labelnya
+   * sidebar tampil sebagai panel melayang, kalau ikut menciut, labelnya
    * hilang dan tombol pelebarnya pun tak tersedia, sehingga pengguna terjebak.
    */
   const isRail = collapsed && isDesktop
@@ -65,7 +65,7 @@ export function Sidebar({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="no-print fixed inset-0 z-40 bg-ink-950/50 md:hidden"
+            className="no-print fixed inset-0 z-40 bg-ink-950/50 lg:hidden"
             onClick={onCloseMobile}
           />
         )}
@@ -76,11 +76,11 @@ export function Sidebar({
           'no-print surface-dark fixed inset-y-0 left-0 z-50 flex flex-col text-ink-50',
           'transition-[width,transform] duration-300 ease-[cubic-bezier(.16,1,.3,1)]',
           isRail ? 'w-[78px]' : 'w-[264px]',
-          'md:translate-x-0',
+          'lg:translate-x-0',
           mobileOpen ? 'translate-x-0' : '-translate-x-full',
         )}
       >
-        {/* Garis saffron tipis di tepi kanan — penanda merek yang halus. */}
+        {/* Garis saffron tipis di tepi kanan sebagai penanda merek. */}
         <span className="pointer-events-none absolute inset-y-0 right-0 w-px bg-gradient-to-b from-transparent via-brand-500/40 to-transparent" />
 
         {/* Brand */}
@@ -116,7 +116,7 @@ export function Sidebar({
 
         {/*
           Pada mode rail, tombol pelebar mendapat barisnya sendiri. Sebelumnya ia
-          diletakkan sebaris dengan logo dan terdorong keluar dari lebar 78px —
+          diletakkan sebaris dengan logo dan terdorong keluar dari lebar 78px,
           membuat sidebar mustahil dilebarkan kembali.
         */}
         {isRail && (

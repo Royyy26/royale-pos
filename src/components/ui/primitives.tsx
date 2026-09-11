@@ -146,7 +146,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   )
 })
 
-/** Input khusus nominal Rupiah — memformat ribuan saat mengetik. */
+/** Input khusus nominal Rupiah, memformat ribuan saat mengetik. */
 export const CurrencyInput = forwardRef<
   HTMLInputElement,
   Omit<InputProps, 'onChange' | 'value'> & { value: number; onValueChange: (value: number) => void }

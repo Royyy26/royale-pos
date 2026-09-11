@@ -50,7 +50,7 @@ export function RangeFilter({
               onChange={(e) => onFromChange(e.target.value)}
               className="h-10 rounded-xl border border-ink-300 px-3 text-[13px] text-ink-800 outline-none focus:border-brand-500"
             />
-            <span className="text-ink-400">—</span>
+            <span className="text-ink-400">s/d</span>
             <input
               type="date"
               value={to}
@@ -61,7 +61,7 @@ export function RangeFilter({
         )}
 
         <span className="ml-auto rounded-xl bg-brand-50 px-3 py-2 text-[12.5px] font-semibold text-brand-700 ring-1 ring-inset ring-brand-200">
-          {formatDateShort(range.from)} — {formatDateShort(range.to)}
+          {formatDateShort(range.from)} s/d {formatDateShort(range.to)}
         </span>
       </div>
     </div>

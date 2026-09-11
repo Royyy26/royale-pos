@@ -370,7 +370,7 @@ export function OwnerDashboard() {
           <div className="mt-3 flex items-center justify-between rounded-xl border border-ink-200 px-3.5 py-3">
             <span className="text-[12.5px] font-semibold text-ink-600">Perlu dicapai / hari</span>
             <span className="text-[15px] figure text-ink-900">
-              {target.hasTarget ? formatCompactIDR(target.requiredPerDay) : '—'}
+              {target.hasTarget ? formatCompactIDR(target.requiredPerDay) : '-'}
             </span>
           </div>
           <Link to="/targets" className="mt-3 block">

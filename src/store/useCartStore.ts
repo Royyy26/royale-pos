@@ -48,7 +48,7 @@ interface CartState {
    *
    * `mergeCurrentItems` menyatukan isi keranjang yang sedang berjalan ke dalam
    * bill. Wajib dipakai saat kasir memilih meja setelah terlanjur memasukkan
-   * menu — tanpa itu item yang sudah diketik hilang tanpa peringatan.
+   * menu, tanpa itu item yang sudah diketik hilang tanpa peringatan.
    */
   loadBill: (order: Order, mergeCurrentItems?: boolean) => void
 
