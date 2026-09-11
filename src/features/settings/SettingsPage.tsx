@@ -414,8 +414,8 @@ export function SettingsPage() {
           <div className="mt-6 rounded-2xl border border-danger-200 bg-danger-50 p-5">
             <p className="text-[14px] font-bold text-danger-800">Reset Data Demo</p>
             <p className="mt-1.5 text-[12.5px] leading-relaxed text-danger-700">
-              Seluruh transaksi, shift, rekonsiliasi, dan perubahan master data akan dikembalikan ke kondisi awal
-              beserta data dummy 75 hari terakhir dan target bulanan. Tindakan ini tidak dapat dibatalkan.
+              Seluruh transaksi, pergerakan stok, dan perubahan master data akan dikembalikan ke kondisi awal
+              beserta data dummy 60 hari terakhir dan target bulanan. Tindakan ini tidak dapat dibatalkan.
             </p>
             <Button variant="danger" className="mt-4" onClick={() => setResetOpen(true)}>
               Reset ke Data Awal

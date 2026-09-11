@@ -219,6 +219,15 @@ export const useDataStore = create<DataState>((set, get) => ({
 
     // Melunasi bill terbuka: pakai kembali pesanan & nomor yang sudah ada.
     const existing = input.billId ? db.orders.find((o) => o.id === input.billId) : undefined
+
+    /*
+      Hanya bill yang masih berjalan yang boleh dilunasi. Tanpa penjagaan ini
+      pesanan yang sudah lunas bisa dibayar dua kali: order lama ditimpa dan
+      catatan pembayaran kedua ikut tercatat, sehingga omzet terhitung ganda.
+    */
+    if (existing && existing.status !== 'pending') {
+      throw new Error(`${existing.order_number} sudah berstatus ${existing.status} dan tidak bisa dibayar lagi.`)
+    }
     const todayCount = db.orders.filter((o) => o.order_number.includes(stamp)).length + 1
     const orderNumber = existing?.order_number ?? `ORD-${stamp}-${String(todayCount).padStart(4, '0')}`
     const orderId = existing?.id ?? uid('ord')
@@ -381,6 +390,13 @@ export const useDataStore = create<DataState>((set, get) => ({
     commit(set, (db) => {
       const order = db.orders.find((o) => o.id === orderId)
       if (!order) return db
+
+      /*
+        Tanpa pembayaran sukses tidak ada dana yang bisa dikembalikan. Bill meja
+        yang masih berjalan masuk kategori ini; membatalkannya lewat void agar
+        stok ikut kembali.
+      */
+      if (!db.payments.some((p) => p.order_id === orderId && p.status === 'success')) return db
       return {
         ...db,
         orders: db.orders.map((o) =>

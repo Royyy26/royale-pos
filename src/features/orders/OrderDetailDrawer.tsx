@@ -42,6 +42,15 @@ export function OrderDetailDrawer({ order, onClose }: { order: Order | null; onC
 
   const canModify = order.status !== 'cancelled' && order.status !== 'refunded'
 
+  /*
+    Refund hanya untuk pesanan yang uangnya benar-benar sudah diterima. Bill
+    meja yang masih berjalan belum punya pembayaran sama sekali, jadi
+    "mengembalikan dana" di sana hanya akan menghapus tagihan tanpa ada uang
+    yang kembali. Untuk membatalkan bill yang belum dibayar, pakai void.
+  */
+  const sudahDibayar = db.payments.some((p) => p.order_id === order.id && p.status === 'success')
+  const canRefund = canModify && sudahDibayar
+
   return (
     <>
       <Drawer
@@ -74,7 +83,7 @@ export function OrderDetailDrawer({ order, onClose }: { order: Order | null; onC
             >
               Faktur A4
             </Button>
-            {canModify && has('pos.refund') && (
+            {canRefund && has('pos.refund') && (
               <Button variant="danger-soft" leftIcon={<Undo2 className="h-4 w-4" />} onClick={() => setRefundOpen(true)}>
                 Refund
               </Button>
@@ -240,7 +249,8 @@ export function OrderDetailDrawer({ order, onClose }: { order: Order | null; onC
         description={
           <>
             Dana sebesar <b className="tnum">{formatIDR(order.total)}</b> akan ditandai sebagai refund dan
-            memengaruhi rekonsiliasi shift terkait.
+            dikurangkan dari rekap penjualan hari ini. Stok tidak dikembalikan, karena pesanan sudah
+            disajikan. Gunakan void bila pesanan batal sebelum disajikan.
           </>
         }
         confirmLabel="Ya, proses refund"

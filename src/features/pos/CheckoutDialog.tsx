@@ -87,16 +87,22 @@ export function CheckoutDialog({
     if (!payload || !canConfirm) return
     setProcessing(true)
     setTimeout(() => {
-      const res = checkout({
-        ...payload,
-        method,
-        receivedAmount: method === 'cash' ? received : total,
-        referenceNumber: method === 'cash' ? null : reference.trim() || null,
-      })
-      setResult(res)
-      setProcessing(false)
-      setStep('success')
-      toast.success('Pembayaran berhasil', `${res.order.order_number} · ${formatIDR(res.order.total)}`)
+      try {
+        const res = checkout({
+          ...payload,
+          method,
+          receivedAmount: method === 'cash' ? received : total,
+          referenceNumber: method === 'cash' ? null : reference.trim() || null,
+        })
+        setResult(res)
+        setStep('success')
+        toast.success('Pembayaran berhasil', `${res.order.order_number} · ${formatIDR(res.order.total)}`)
+      } catch (err) {
+        // Mis. bill sudah lunas atau dibatalkan di perangkat lain.
+        toast.error('Pembayaran ditolak', err instanceof Error ? err.message : 'Terjadi kesalahan tidak terduga.')
+      } finally {
+        setProcessing(false)
+      }
     }, 620)
   }
 
