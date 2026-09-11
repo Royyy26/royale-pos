@@ -1,7 +1,7 @@
 import type { LucideIcon } from 'lucide-react'
 import {
   Apple, Banana, Beef, Beer, Cake, CakeSlice, Candy, Cherry, Citrus, Coffee, Cookie,
-  CookingPot, Croissant, CupSoda, Donut, Droplet, EggFried, Fish, GlassWater, Grape,
+  CookingPot, Croissant, CupSoda, Donut, Droplet, Drumstick, EggFried, Fish, Flame, GlassWater, Grape,
   IceCreamBowl, IceCreamCone, Leaf, LeafyGreen, Martini, Milk, Nut, Package, Pizza,
   Popcorn, Popsicle, Salad, Sandwich, Snowflake, Soup, Sparkles, Torus, Utensils,
   UtensilsCrossed, Wheat, Wine,
@@ -21,7 +21,7 @@ export type GlyphOption = { key: string; label: string; Icon: LucideIcon }
 export const PRODUCT_GLYPHS: GlyphOption[] = [
   { key: 'rice', label: 'Nasi', Icon: CookingPot },
   { key: 'noodle', label: 'Mie / Soto', Icon: Soup },
-  { key: 'chicken', label: 'Ayam', Icon: Beef },
+  { key: 'chicken', label: 'Ayam', Icon: Drumstick },
   { key: 'beef', label: 'Daging sapi', Icon: Beef },
   { key: 'fish', label: 'Ikan / seafood', Icon: Fish },
   { key: 'burger', label: 'Burger', Icon: Sandwich },
@@ -30,7 +30,7 @@ export const PRODUCT_GLYPHS: GlyphOption[] = [
   { key: 'fries', label: 'Gorengan', Icon: Popcorn },
   { key: 'salad', label: 'Salad / sayur', Icon: Salad },
   { key: 'egg', label: 'Telur', Icon: EggFried },
-  { key: 'chili', label: 'Pedas', Icon: Sparkles },
+  { key: 'chili', label: 'Pedas', Icon: Flame },
   { key: 'cheese', label: 'Keju', Icon: Nut },
   { key: 'coffee', label: 'Kopi', Icon: Coffee },
   { key: 'tea', label: 'Teh', Icon: Leaf },

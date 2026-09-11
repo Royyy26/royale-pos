@@ -94,8 +94,14 @@
 }
 
 @layer components {
+  /*
+    `min-w-0` wajib: sebagai anak flex/grid, kartu mewarisi `min-width: auto`
+    dan menolak menyusut di bawah lebar konten. Satu tabel berkolom lebar lalu
+    memaksa kolom grid melebihi wadahnya dan seluruh halaman menggulir
+    menyamping, alih-alih tabelnya yang bergulir di dalam kartu.
+  */
   .card {
-    @apply bg-white rounded-2xl border border-ink-200/80 shadow-card;
+    @apply bg-white rounded-2xl border border-ink-200/80 shadow-card min-w-0;
   }
 
   .card-hover {

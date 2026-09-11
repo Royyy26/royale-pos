@@ -44,7 +44,7 @@ export function Page({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.28, ease: EASE_OUT }}
         className={cn(
-          bleed ? 'flex-1 overflow-hidden' : 'flex-1 px-4 py-5 lg:px-6 lg:py-6',
+          bleed ? 'flex-1 lg:overflow-hidden' : 'flex-1 px-4 py-5 lg:px-6 lg:py-6',
           className,
         )}
       >

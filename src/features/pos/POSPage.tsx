@@ -167,7 +167,7 @@ export function POSPage() {
         </Button>
       }
     >
-      <div className="flex h-[calc(100vh-4rem)] flex-col lg:flex-row">
+      <div className="flex flex-col lg:h-[calc(100vh-4rem)] lg:flex-row">
         {/* ------------------------------ Katalog ------------------------------ */}
         <section className="flex min-h-0 min-w-0 flex-1 flex-col border-b border-ink-200 lg:border-b-0 lg:border-r">
           <div className="shrink-0 space-y-3 bg-white px-4 py-4 lg:px-5">
@@ -202,7 +202,7 @@ export function POSPage() {
             </div>
           </div>
 
-          <div className="scroll-area min-h-0 flex-1 overflow-y-auto px-4 pb-6 lg:px-5">
+          <div className="scroll-area min-h-0 flex-1 px-4 pb-6 lg:overflow-y-auto lg:px-5">
             {products.length === 0 ? (
               <EmptyState
                 icon={<ChefHat className="h-7 w-7" />}
@@ -307,7 +307,7 @@ export function POSPage() {
         </section>
 
         {/* ------------------------------- Keranjang --------------------------- */}
-        <aside className="flex max-h-[58%] w-full shrink-0 flex-col bg-white lg:max-h-none lg:w-[340px] xl:w-[400px] 2xl:w-[440px]">
+        <aside className="flex w-full shrink-0 flex-col bg-white lg:w-[340px] xl:w-[400px] 2xl:w-[440px]">
           {/* Tipe pesanan */}
           <div className="shrink-0 border-b border-ink-200 px-4 py-3.5">
             <div className="grid grid-cols-3 gap-2">
@@ -459,7 +459,7 @@ export function POSPage() {
           </div>
 
           {/* Daftar item */}
-          <div className="scroll-area min-h-0 flex-1 overflow-y-auto px-4">
+          <div className="scroll-area min-h-0 flex-1 px-4 lg:overflow-y-auto">
             {cart.items.length === 0 ? (
               <EmptyState
                 icon={<ShoppingCart className="h-7 w-7" />}
@@ -550,7 +550,7 @@ export function POSPage() {
           </div>
 
           {/* Ringkasan & aksi */}
-          <div className="shrink-0 border-t border-ink-200 bg-white px-4 pb-4 pt-3">
+          <div className="sticky bottom-0 z-20 shrink-0 border-t border-ink-200 bg-white px-4 pb-4 pt-3 lg:static">
             {cart.items.length > 0 && (
               <>
                 <div className="mb-3 flex gap-2">

@@ -76,7 +76,12 @@ export function Topbar({
         </div>
 
         <div className="flex shrink-0 items-center gap-2">
-          {actions}
+          {/*
+            Di bawah sm, aksi halaman pindah ke barisnya sendiri di bawah header.
+            Tombol beretiket seperti "Simpan Perubahan" tidak bisa menyusut, jadi
+            memaksanya ikut baris setinggi 64px membuatnya terdorong keluar layar.
+          */}
+          {actions && <span className="hidden items-center gap-2 sm:flex">{actions}</span>}
 
           <LiveClock />
 
@@ -106,6 +111,12 @@ export function Topbar({
           </Button>
         </div>
       </header>
+
+      {actions && (
+        <div className="no-print flex items-center gap-2 overflow-x-auto border-b border-ink-200 bg-[var(--app-bg)]/85 px-4 py-2.5 [scrollbar-width:none] sm:hidden [&::-webkit-scrollbar]:hidden">
+          {actions}
+        </div>
+      )}
 
       <Drawer
         open={notifOpen}

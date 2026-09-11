@@ -455,7 +455,13 @@ export function SegmentedControl<T extends string>({
   className?: string
 }) {
   return (
-    <div className={cn('inline-flex rounded-xl bg-ink-100 p-1 ring-1 ring-inset ring-ink-200/60', className)}>
+    /*
+      Pembungkus bergulir: jumlah opsi bisa melebihi lebar layar sempit
+      (mis. enam tab Pengaturan di ponsel). Tanpa ini seluruh halaman
+      yang ikut menggulir menyamping, bukan kontrolnya sendiri.
+    */
+    <div className="max-w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className={cn('inline-flex rounded-xl bg-ink-100 p-1 ring-1 ring-inset ring-ink-200/60', className)}>
       {options.map((o) => (
         <button
           key={o.value}
@@ -473,6 +479,7 @@ export function SegmentedControl<T extends string>({
           {o.label}
         </button>
       ))}
+      </div>
     </div>
   )
 }
