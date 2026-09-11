@@ -92,7 +92,7 @@ export function Modal({
             )}
           </div>
         )}
-        <div className="scroll-area flex-1 overflow-y-auto px-6 py-5">{children}</div>
+        <div className="scroll-area min-w-0 flex-1 overflow-y-auto px-4 py-5 sm:px-6">{children}</div>
         {footer && <div className="border-t border-ink-100 bg-ink-50 px-6 py-4">{footer}</div>}
       </motion.div>
     </div>
@@ -217,7 +217,7 @@ export function Drawer({
             <X className="h-4 w-4" />
           </Button>
         </div>
-        <div className="scroll-area flex-1 overflow-y-auto px-6 py-5">{children}</div>
+        <div className="scroll-area min-w-0 flex-1 overflow-y-auto px-4 py-5 sm:px-6">{children}</div>
         {footer && <div className="border-t border-ink-100 bg-ink-50 px-6 py-4">{footer}</div>}
       </motion.div>
     </div>

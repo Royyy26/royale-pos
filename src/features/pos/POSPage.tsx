@@ -59,6 +59,22 @@ export function POSPage() {
   const [shortcutsOpen, setShortcutsOpen] = useState(false)
   const searchRef = useRef<HTMLInputElement>(null)
 
+  /*
+    Di bawah lg keranjang berada di bawah daftar produk, jadi totalnya hilang
+    dari pandangan selama kasir memilih menu. Batang ringkas menempel di dasar
+    layar sampai ringkasan aslinya benar-benar terlihat.
+  */
+  const summaryRef = useRef<HTMLDivElement>(null)
+  const [summaryVisible, setSummaryVisible] = useState(false)
+
+  useEffect(() => {
+    const el = summaryRef.current
+    if (!el || typeof IntersectionObserver === 'undefined') return
+    const io = new IntersectionObserver(([entry]) => setSummaryVisible(entry.isIntersecting))
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
   const totals = cart.totals(db.settings)
   const saveBill = useDataStore((s) => s.saveBill)
   const cancelBill = useDataStore((s) => s.cancelBill)
@@ -202,7 +218,7 @@ export function POSPage() {
             </div>
           </div>
 
-          <div className="scroll-area min-h-0 flex-1 px-4 pb-6 lg:overflow-y-auto lg:px-5">
+          <div className="scroll-area min-h-0 flex-1 px-4 pb-24 lg:overflow-y-auto lg:px-5 lg:pb-6">
             {products.length === 0 ? (
               <EmptyState
                 icon={<ChefHat className="h-7 w-7" />}
@@ -550,7 +566,7 @@ export function POSPage() {
           </div>
 
           {/* Ringkasan & aksi */}
-          <div className="sticky bottom-0 z-20 shrink-0 border-t border-ink-200 bg-white px-4 pb-4 pt-3 lg:static">
+          <div ref={summaryRef} className="sticky bottom-0 z-20 shrink-0 border-t border-ink-200 bg-white px-4 pb-4 pt-3 lg:static">
             {cart.items.length > 0 && (
               <>
                 <div className="mb-3 flex gap-2">
@@ -657,6 +673,34 @@ export function POSPage() {
           </div>
         </aside>
       </div>
+
+      {/* Ringkasan melayang, hanya di ponsel dan hanya saat ringkasan asli di luar layar */}
+      <AnimatePresence>
+        {cart.items.length > 0 && !summaryVisible && (
+          <motion.button
+            type="button"
+            initial={{ y: 72 }}
+            animate={{ y: 0 }}
+            exit={{ y: 72 }}
+            transition={springSnappy}
+            onClick={() => summaryRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })}
+            className="no-print fixed inset-x-0 bottom-0 z-40 flex items-center gap-3 border-t border-ink-800 bg-ink-900 px-4 py-3 text-left text-white shadow-pop lg:hidden"
+          >
+            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white/10">
+              <ShoppingCart className="h-4 w-4" aria-hidden="true" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-[11px] font-semibold uppercase tracking-[0.12em] text-white/55">
+                {formatNumber(cart.items.reduce((a, i) => a + i.quantity, 0))} item di keranjang
+              </span>
+              <span className="figure block text-[17px] leading-tight">{formatIDR(totals.total)}</span>
+            </span>
+            <span className="shrink-0 rounded-xl bg-brand-500 px-3.5 py-2 text-[13px] font-bold text-ink-950">
+              Lihat
+            </span>
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       {/* ------------------------------- Dialog -------------------------------- */}
 

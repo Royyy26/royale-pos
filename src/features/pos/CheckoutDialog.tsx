@@ -132,8 +132,13 @@ export function CheckoutDialog({
   if (step === 'success' && result) {
     return (
       <Modal open={open} onClose={onDone} size="xl" hideClose closeOnBackdrop={false}>
-        <div className="grid gap-8 lg:grid-cols-[1fr_340px]">
-          <div>
+        {/*
+          `minmax(0,...)` dan `min-w-0` wajib: trek grid mewarisi min-width auto
+          dan mengambil lebar minimum kontennya. Pratinjau struk 302px lalu
+          memaksa seluruh panel melebihi lebar layar ponsel.
+        */}
+        <div className="grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
+          <div className="min-w-0">
             <div className="flex items-start gap-4">
               <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-success-50">
                 <Check className="h-7 w-7 text-success-600" strokeWidth={3} />
@@ -191,21 +196,26 @@ export function CheckoutDialog({
               </div>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-2.5">
+            {/*
+              Di ponsel tiga tombol ini bertumpuk penuh. Sebagai baris flex mereka
+              butuh lebih dari 500px, dan `ml-auto` mendorong "Transaksi Baru"
+              melewati tepi panel yang ber-overflow-hidden sehingga terpotong.
+            */}
+            <div className="mt-6 grid gap-2.5 sm:flex sm:flex-wrap">
               <Button size="lg" leftIcon={<Printer className="h-4 w-4" />} onClick={() => handlePrint('thermal')}>
                 Cetak Struk
               </Button>
               <Button size="lg" variant="outline" leftIcon={<FileText className="h-4 w-4" />} onClick={() => handlePrint('a4')}>
                 Cetak Faktur A4
               </Button>
-              <Button size="lg" variant="dark" className="ml-auto" leftIcon={<Sparkles className="h-4 w-4" />} onClick={onDone}>
+              <Button size="lg" variant="dark" className="sm:ml-auto" leftIcon={<Sparkles className="h-4 w-4" />} onClick={onDone}>
                 Transaksi Baru
               </Button>
             </div>
           </div>
 
           {/* Pratinjau struk */}
-          <div className="rounded-2xl bg-ink-100 p-4">
+          <div className="min-w-0 rounded-2xl bg-ink-100 p-4">
             <div className="mb-3 flex items-center justify-between">
               <p className="section-title">Pratinjau</p>
               <div className="inline-flex rounded-lg bg-white p-0.5">
@@ -223,7 +233,7 @@ export function CheckoutDialog({
                 ))}
               </div>
             </div>
-            <div className="max-h-[52vh] overflow-y-auto rounded-xl">
+            <div className="max-h-[52vh] overflow-auto rounded-xl [scrollbar-width:thin]">
               {receiptTab === 'thermal' ? (
                 <ThermalReceipt
                   order={result.order}
