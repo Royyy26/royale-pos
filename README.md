@@ -147,14 +147,14 @@ src/
 ├─ db/             Lapisan basis data (localStorage) — titik tukar ke API
 ├─ features/       Modul per domain
 │  ├─ auth/  pos/  tables/  orders/  analytics/  reports/  targets/
-│  ├─ products/  inventory/  users/  settings/  dashboard/  landing/  misc/
+│  ├─ products/  inventory/  users/  settings/  dashboard/  misc/
 ├─ hardware/       Abstraksi printer, scanner, cash drawer, customer display
 ├─ lib/            Utilitas format IDR/tanggal, RBAC, analitik, KPI target, status meja & bill
 ├─ store/          Zustand: data, auth, cart, toast
 └─ types/          Definisi entitas — cerminan docs/schema.sql
 ```
 
-**Stack:** React 18 · TypeScript · Vite · Tailwind CSS · Zustand · React Router · Recharts · Framer Motion · lucide-react · GSAP ScrollTrigger + Swiper (khusus landing).
+**Stack:** React 18 · TypeScript · Vite · Tailwind CSS · Zustand · React Router · Recharts · Framer Motion · lucide-react.
 
 ---
 
@@ -165,7 +165,7 @@ Arahnya sengaja menjauh dari tampilan dashboard SaaS generik: latar kertas krem 
 | Peran | Warna | Catatan |
 |---|---|---|
 | Latar | `#F7F4EF` | Kertas hangat, bukan abu-abu kebiruan |
-| Permukaan gelap | `#1F1A15` | Espresso, dipakai sidebar & panel hero |
+| Permukaan gelap | `#1F1A15` | Espresso, dipakai sidebar & panel gelap |
 | Aksen | `#E0921A` | Saffron — sorotan, nav aktif, progres |
 | Berhasil | `#4A9366` | Sage |
 | Peringatan | `#C2703A` | Terracotta |
@@ -180,7 +180,12 @@ Keputusan yang membedakannya dari templat:
 
 Tipografi: **Bricolage Grotesque** untuk judul dan seluruh nominal (kelas `.figure`), **Inter** untuk teks antarmuka, **JetBrains Mono** untuk struk.
 
-### Disiplin Ikon
+### Rute Akar (`/`)
+
+Tidak ada halaman publik. Aplikasi ini dipakai staf di dalam toko, bukan pengunjung,
+jadi `/` hanya meneruskan: ke beranda sesuai peran bila sesi ada, ke `/login` bila tidak.
+
+## Disiplin Ikon
 
 Seluruh ikon antarmuka memakai **lucide-react** — satu keluarga, stroke seragam, mewarisi `currentColor`. Emoji tidak dipakai di mana pun, termasuk untuk ikon produk, kategori, dan lambang merek: emoji bergantung font, berubah rupa antar sistem operasi, tidak bisa diberi token warna, dan pada struk termal kerap tercetak sebagai kotak kosong.
 
@@ -217,41 +222,6 @@ Kolom produk wajib memakai `min-w-0`. Tanpa itu `flex-1` mewarisi `min-width: au
 Primitif ada di [`src/components/ui/motion.tsx`](src/components/ui/motion.tsx): `FadeIn`, `Stagger`/`StaggerItem`, `AnimatedNumber` (nominal merayap naik), `Pressable`, `AnimatedBar`. Durasi dijaga 150–320 ms agar tidak pernah menghambat kasir, dan seluruhnya berhenti otomatis pada `prefers-reduced-motion: reduce`.
 
 Yang bergerak: pil nav aktif berpindah mulus antar menu (`layoutId`), kartu KPI masuk bertahap, item keranjang masuk/keluar dengan pegas, modal & drawer memakai spring, transisi antar halaman, serta tekanan pegas pada kartu produk.
-
----
-
-## Halaman Landing (`/`)
-
-Halaman publik sebelum login, memuat hero dengan animasi scroll-pin GSAP: lima kartu foto merayap naik, mengecil, lalu berlabuh di celah-celah judul sementara kalimatnya tersingkap.
-
-Halaman ini **dimuat terpisah** (`React.lazy`) sehingga GSAP + Swiper tidak membebani bundel aplikasi kasir. Pengguna yang sudah masuk langsung diteruskan ke dashboard tanpa melewati landing.
-
-Komponennya ada di [`src/components/ui/home-hero-landing-scroll-animation.tsx`](src/components/ui/home-hero-landing-scroll-animation.tsx) dan sengaja **tidak dipakai di dalam aplikasi kasir** — scroll-pin menghambat alur kerja operasional. Komponen ini punya jaring pengaman: bila progres scroll tidak pernah bergerak (mis. lingkungan yang tidak mengirim event `scroll`), animasi dilepas dan judul ditampilkan apa adanya, sehingga hero tidak pernah tampak kosong.
-
-### Lapisan Basis Data
-
-Seluruh akses data melewati [`src/db/database.ts`](src/db/database.ts). Prototipe menyimpan data di `localStorage`; migrasi ke REST API / Prisma / Supabase cukup mengganti implementasi `loadDatabase` dan `persistDatabase` tanpa menyentuh komponen UI.
-
-Skema tabel lengkap ada di [`docs/schema.sql`](docs/schema.sql) — mencakup `users`, `roles`, `permissions`, `products`, `categories`, `sales_targets`, `orders`, `order_items`, `payments`, `invoices`, `inventory`, `stock_movements`, `stock_adjustments`, `audit_logs`, dan `store_settings`. Setiap tabel memiliki `id`, `created_at`, `updated_at`.
-
-### Abstraksi Perangkat Keras
-
-[`src/hardware/`](src/hardware) mendefinisikan kontrak `PrinterDriver`, `ScannerDriver`, dan `CustomerDisplayDriver`. Implementasi aktif saat ini adalah `BrowserPrinter` (dialog cetak browser) dan `KeyboardWedgeScanner`. Mengganti ke thermal printer cukup:
-
-```ts
-import { registerPrinter } from '@/hardware'
-registerPrinter(new ThermalUsbPrinter())
-```
-
-Seluruh halaman memanggil `printer()`, sehingga tidak ada perubahan pada UI. Tabel `devices` pada skema sudah disiapkan untuk menyimpan konfigurasi perangkat.
-
-### Persiapan Recipe / BOM
-
-Kolom `products.has_recipe` serta tabel `ingredients`, `recipes`, dan `recipe_items` sudah tersedia di skema. Versi ini memakai stok langsung per produk; ketika BOM diaktifkan, alurnya menjadi:
-
-```
-Menu terjual → Recipe → Ingredients → Pengurangan stok bahan baku
-```
 
 ---
 

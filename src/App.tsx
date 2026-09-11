@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect } from 'react'
+import { useEffect } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { AppLayout } from '@/components/layout/AppLayout'
 import { Toaster } from '@/components/ui/Toaster'
@@ -28,23 +28,15 @@ import { SettingsPage } from '@/features/settings/SettingsPage'
 import { NotFoundPage } from '@/features/misc/NotFoundPage'
 
 /**
- * Landing publik dimuat terpisah agar GSAP + Swiper tidak ikut membebani
- * bundel aplikasi kasir yang dipakai setiap hari.
+ * `/` tidak punya halaman sendiri. Aplikasi ini dipakai staf di dalam toko,
+ * bukan pengunjung, jadi akar langsung meneruskan ke beranda sesuai peran —
+ * atau ke login bila sesi belum ada.
  */
-const LandingPage = lazy(() => import('@/features/landing/LandingPage'))
-
-/** `/` menampilkan landing untuk tamu, dan langsung meneruskan yang sudah masuk. */
-function PublicHome() {
-  const user = useAuthStore((s) => s.user)
+function Home() {
   const hydrated = useAuthStore((s) => s.hydrated)
 
   if (!hydrated) return <FullScreenLoader />
-  if (user) return <RoleHomeRedirect />
-  return (
-    <Suspense fallback={<FullScreenLoader message="Menyiapkan halaman…" />}>
-      <LandingPage />
-    </Suspense>
-  )
+  return <RoleHomeRedirect />
 }
 
 export function App() {
@@ -57,7 +49,7 @@ export function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<PublicHome />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
 
         <Route
